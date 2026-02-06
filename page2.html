@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>She Said YES! 💖</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+
+body {
+  margin:0;
+  padding:0;
+  font-family: 'Quicksand', sans-serif;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  overflow:hidden;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+}
+
+h1 {
+  font-family:'Pacifico', cursive;
+  font-size:3em;
+  color:#fff;
+  text-align:center;
+  text-shadow:0 0 20px #ff69b4,0 0 40px #ff1493,0 0 60px #ff69b4;
+  margin-top:20px;
+}
+
+.decor-img {
+  position:absolute;
+  width:220px;
+  opacity:0.25;
+  animation: float 15s ease-in-out infinite alternate;
+}
+
+#img1 { top:50px; left:20px; transform: rotate(-10deg); }
+#img2 { top:200px; right:40px; transform: rotate(15deg); }
+#img3 { bottom:100px; left:50%; transform: translateX(-50%) rotate(-5deg); }
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(15deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.heart {
+  position:absolute;
+  font-size:20px;
+  animation: fall 5s linear forwards;
+}
+
+@keyframes fall {
+  0% { transform:translateY(0) rotate(0deg); opacity:1; }
+  100% { transform:translateY(100vh) rotate(360deg); opacity:0; }
+}
+
+.confetti {
+  position:absolute;
+  width:10px;
+  height:10px;
+  background-color:hsl(calc(360*var(--i)),100%,50%);
+  opacity:0.8;
+  transform:rotate(45deg);
+  animation: confettiFall 5s linear forwards;
+}
+
+@keyframes confettiFall {
+  0% { transform:translateY(0) rotate(0deg); opacity:1; }
+  100% { transform:translateY(100vh) rotate(360deg); opacity:0; }
+}
+</style>
+</head>
+<body>
+
+<h1>Swostika, you said YES 💖💍<br>I love you forever, Sagar<br>Our anniversary: Sept 25, 2025</h1>
+
+<img src="photo1.png" id="img1" class="decor-img">
+<img src="photo2.png" id="img2" class="decor-img">
+<img src="photo3.png" id="img3" class="decor-img">
+
+<script>
+// Hearts
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.className="heart";
+  heart.textContent="💖";
+  heart.style.left = Math.random()*window.innerWidth+"px";
+  heart.style.fontSize = (Math.random()*40+20)+"px";
+  heart.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,200);
+
+// Confetti
+function createConfetti(){
+  const confetti = document.createElement("div");
+  confetti.className="confetti";
+  confetti.style.left = Math.random()*window.innerWidth+"px";
+  confetti.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+  confetti.style.setProperty('--i', Math.random());
+  confetti.style.width = Math.random()*12+8+"px";
+  confetti.style.height = Math.random()*12+8+"px";
+  document.body.appendChild(confetti);
+  setTimeout(()=>confetti.remove(),5000);
+}
+setInterval(createConfetti,150);
+
+// Click hearts
+document.body.addEventListener("click", (e)=>{
+  const heart = document.createElement("div");
+  heart.className="heart";
+  heart.textContent="💖";
+  heart.style.left = e.clientX+"px";
+  heart.style.top = e.clientY+"px";
+  heart.style.fontSize="30px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),1500);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sagar ❤️ Swostika Proposal 💖</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(120deg, #fbc2eb, #a6c1ee);
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+  position: relative;
+  cursor: pointer;
+}
+
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 3em;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+}
+
+h2 {
+  font-size: 1.8em;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+}
+
+button {
+  padding: 15px 45px;
+  margin: 15px;
+  font-size: 1.3em;
+  cursor: pointer;
+  border-radius: 50px;
+  border: none;
+  transition: 0.3s;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+#yes {
+  background: linear-gradient(45deg, #ff4d6d, #ff6b81);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+#yes:hover { transform: scale(1.15); box-shadow: 0 10px 25px rgba(255,77,109,0.5); }
+
+#no {
+  background: linear-gradient(45deg, #ffe066, #ffd34d);
+  color: #333;
+}
+
+#maybe {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: #fff;
+}
+
+#message-container {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80%;
+}
+
+.message {
+  background: rgba(255,255,255,0.85);
+  padding: 15px 25px;
+  border-radius: 30px;
+  margin: 8px 0;
+  font-size: 1.15em;
+  text-align: center;
+  animation: pop 0.5s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transform-origin: center;
+}
+
+@keyframes pop {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Floating hearts, stars, love notes */
+.float {
+  position: absolute;
+  font-size: 20px;
+  animation: fall 6s linear forwards;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+.typewriter {
+  display: inline-block;
+  border-right: 2px solid #fff;
+  padding-right: 2px;
+  margin-top: 5px;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<h1>Sagar ❤️ Swostika</h1>
+<h2>Sanu, will you marry me? 💍</h2>
+
+<div>
+  <button id="yes">Yes 😍</button>
+  <button id="no">No 😢</button>
+  <button id="maybe">Maybe 💌</button>
+</div>
+
+<div id="message-container"></div>
+
+<script>
+// 50+ playful messages for No button
+const noMessages = [
+"Sanu, are you really sure? 🤔","Think about all our cute memories, Swostika 💕",
+"I promise endless hugs and kisses 😘","Can you imagine life without me, Sanu? 😭",
+"Every day without you is gray 🌈","I will love you forever, Sanu 💖",
+"Please say yes, Swostika 🙏💍","You can't leave me hanging, Sanu 😏",
+"My dreams are full of you 💕","You are my favorite hello and hardest goodbye 💖",
+"Sanu, you complete my world 🌍","Life is sweeter with you 🍬💖","I will cherish you forever 🛡️❤️",
+"You are my reason to smile Swostika 😄","Say yes and make me the happiest 🥰",
+"Sanu, my heart beats for you 💓","Please be mine forever 💖","I can't stop thinking about you 😘",
+"You are my sunshine Swostika ☀️","Life is magical with you ✨","I want to grow old with you Sanu 👵👴",
+"Our anniversary is coming Sept 25, 2025 💖","You are my treasure, Swostika 💎",
+"Being with you feels like home 🏡❤️","You make every day brighter Sanu 🌈","I love you endlessly 💕",
+"You are my everything Swostika 💖","Please say yes 😍","I can't imagine life without you Sanu 😢",
+"You are my heartbeat 💓","You are my soulmate Swostika 💕","Let's make memories together 🌸",
+"My love for you grows every day 💖","You are my dream come true Sanu 🌈","I promise to always protect you 🛡️",
+"You are my favorite person Swostika 😍","I can't wait to hold you forever 🤗","Please be my forever 💖"
+];
+
+// Random messages for floating hearts/stars/notes
+const floatingMessages = [
+"Sagar loves Swostika 💖","You are my sunshine ☀️","Forever yours 💕",
+"Sanu, you are magical ✨","I can't stop smiling thinking of you 😘",
+"Our anniversary: Sept 25, 2025 💖","You complete me 💓","I will love you endlessly 💕"
+];
+
+const container = document.getElementById("message-container");
+
+// Functions to create floating hearts, stars, love notes
+function createFloating(type) {
+  const el = document.createElement("div");
+  el.className = "float";
+  el.textContent = type;
+  el.style.left = Math.random() * window.innerWidth + "px";
+  el.style.fontSize = (Math.random()*25+15) + "px";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 6000);
+}
+
+// Yes button
+document.getElementById("yes").addEventListener("click", () => {
+  window.location.href = "page2.html";
+});
+
+// No button
+document.getElementById("no").addEventListener("click", () => {
+  const idx = Math.floor(Math.random() * noMessages.length);
+  const msg = document.createElement("div");
+  msg.className = "message";
+  msg.textContent = noMessages[idx];
+  container.appendChild(msg);
+  container.scrollTop = container.scrollHeight;
+  msg.animate([{transform:'scale(1) rotate(0deg)'},{transform:'scale(1.2) rotate(-10deg)'},{transform:'scale(1) rotate(0deg)'}],{duration:500});
+});
+
+// Maybe button
+document.getElementById("maybe").addEventListener("click", () => {
+  const idx = Math.floor(Math.random() * floatingMessages.length);
+  createFloating(floatingMessages[idx]);
+});
+
+// Random floating hearts/stars/notes
+setInterval(() => {
+  const types = ["💖","✨","🌸"];
+  createFloating(types[Math.floor(Math.random()*types.length)]);
+}, 800);
+
+// Cursor click hearts
+document.body.addEventListener("click", (e) => {
+  const heart = document.createElement("div");
+  heart.className = "float";
+  heart.textContent = "💖";
+  heart.style.left = e.clientX + "px";
+  heart.style.top = e.clientY + "px";
+  heart.style.fontSize = "25px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 1500);
+});
+
+// Letter-by-letter floating message
+function typeMessage(msg) {
+  const div = document.createElement("div");
+  div.className = "message";
+  container.appendChild(div);
+  let i=0;
+  function type() {
+    if(i<msg.length){
+      div.textContent += msg.charAt(i);
+      i++;
+      setTimeout(type,50);
+    }
+  }
+  type();
+}
+
+setInterval(() => {
+  const idx = Math.floor(Math.random()*floatingMessages.length);
+  typeMessage(floatingMessages[idx]);
+}, 10000);
+
+</script>
+</body>
+</html>
