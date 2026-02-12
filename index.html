@@ -1,244 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sagar ❤️ Swostika Proposal 💖</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar & Swostika | Private Sanctuary</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-bg: #050505;
+            --card-bg: #111111;
+            --accent: #ff3366;
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --border: rgba(255, 255, 255, 0.08);
+        }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Quicksand', sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(120deg, #fbc2eb, #a6c1ee);
-  background-size: 400% 400%;
-  animation: gradientBG 20s ease infinite;
-  position: relative;
-  cursor: pointer;
-}
+        body { 
+            background-color: var(--dark-bg); 
+            color: var(--text-main); 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0;
+            overflow-x: hidden;
+        }
 
-@keyframes gradientBG {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
-}
+        /* --- STAGE MANAGEMENT --- */
+        #login-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark-bg); z-index: 10000; display: flex; align-items: center; justify-content: center; text-align: center; }
+        #proposal-stage { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark-bg); z-index: 9000; display: none; align-items: center; justify-content: center; text-align: center; }
+        #main-vault { display: none; }
 
-h1 {
-  font-family: 'Pacifico', cursive;
-  font-size: 3em;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
-}
+        .page { min-height: 100vh; padding: 40px 20px 140px 20px; animation: fadeIn 0.8s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-h2 {
-  font-size: 1.8em;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 30px;
-  text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
-}
+        .glass-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 30px; 
+            padding: 35px; 
+            max-width: 500px; 
+            margin: auto; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
 
-button {
-  padding: 15px 45px;
-  margin: 15px;
-  font-size: 1.3em;
-  cursor: pointer;
-  border-radius: 50px;
-  border: none;
-  transition: 0.3s;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-}
+        h1 { font-family: 'Playfair Display', serif; color: var(--accent); }
+        
+        .gate-input {
+            background: #1a1a1a; border: 1px solid var(--border);
+            color: white; padding: 15px; border-radius: 12px;
+            width: 100%; max-width: 300px; margin-bottom: 15px; text-align: center;
+        }
 
-#yes {
-  background: linear-gradient(45deg, #ff4d6d, #ff6b81);
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-}
+        .btn-luxe { background: var(--accent); color: white; border: none; padding: 14px 45px; border-radius: 50px; font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Updated NO button to match YES button style */
+        .btn-solid-no { background: #333; color: white; border: none; padding: 14px 45px; border-radius: 50px; font-weight: 600; transition: 0.1s; text-transform: uppercase; letter-spacing: 1px; }
 
-#yes:hover { transform: scale(1.15); box-shadow: 0 10px 25px rgba(255,77,109,0.5); }
+        /* --- Navigation --- */
+        .bottom-nav {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: rgba(15, 15, 15, 0.9); backdrop-filter: blur(20px);
+            border: 1px solid var(--border); border-radius: 100px;
+            display: flex; padding: 10px 15px; gap: 5px; z-index: 999;
+        }
+        .nav-item { color: var(--text-dim); text-decoration: none; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; padding: 10px 12px; cursor: pointer; border-radius: 50px; }
+        .nav-item.active { color: var(--accent); background: rgba(255, 51, 102, 0.1); }
 
-#no {
-  background: linear-gradient(45deg, #ffe066, #ffd34d);
-  color: #333;
-}
+        /* --- Gallery --- */
+        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .polaroid { background: white; padding: 10px 10px 25px 10px; border-radius: 2px; transform: rotate(-2deg); }
+        .polaroid img { width: 100%; height: 150px; object-fit: cover; }
+        .polaroid p { color: #111; margin-top: 8px; font-weight: 700; font-size: 0.7rem; text-align: center; }
 
-#maybe {
-  background: linear-gradient(45deg, #6a11cb, #2575fc);
-  color: #fff;
-}
+        /* --- Reasons --- */
+        .reason-item { background: #181818; padding: 15px; border-radius: 15px; margin-bottom: 12px; font-size: 0.85rem; border: 1px solid var(--border); }
+        .reason-item b { color: var(--accent); margin-right: 10px; }
 
-#message-container {
-  margin-top: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 80%;
-}
+        /* --- Valentine Week --- */
+        .v-btn { background: #1a1a1a; color: white; border: 1px solid var(--border); border-radius: 15px; padding: 15px; font-size: 0.8rem; transition: 0.3s; width: 100%; text-align: center; margin-bottom: 10px; cursor: pointer; }
+        .v-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-.message {
-  background: rgba(255,255,255,0.85);
-  padding: 15px 25px;
-  border-radius: 30px;
-  margin: 8px 0;
-  font-size: 1.15em;
-  text-align: center;
-  animation: pop 0.5s ease;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transform-origin: center;
-}
-
-@keyframes pop {
-  0% { transform: scale(0); opacity: 0; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* Floating hearts, stars, love notes */
-.float {
-  position: absolute;
-  font-size: 20px;
-  animation: fall 6s linear forwards;
-}
-
-@keyframes fall {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-}
-
-.typewriter {
-  display: inline-block;
-  border-right: 2px solid #fff;
-  padding-right: 2px;
-  margin-top: 5px;
-  font-weight: 600;
-}
-</style>
+        .heart-float { position: fixed; color: var(--accent); animation: float 4s linear; pointer-events: none; z-index: -1; }
+        @keyframes float { 0% { transform: translateY(110vh); opacity: 1; } 100% { transform: translateY(-10vh); opacity: 0; } }
+    </style>
 </head>
 <body>
 
-<h1>Sagar ❤️ Swostika</h1>
-<h2>Sanu, will you marry me? 💍</h2>
+    <div id="login-gate">
+        <div class="glass-card">
+            <h1>Private Vault</h1>
+            <p class="text-secondary mb-4">Verification Required</p>
+            <input type="text" id="her" class="gate-input" placeholder="Enter Her Name">
+            <input type="text" id="his" class="gate-input" placeholder="Enter His Name">
+            <br>
+            <button class="btn-luxe mt-2" onclick="verifyAccess()">Unlock</button>
+            <p id="err" class="mt-3" style="color: var(--accent); font-size: 0.8rem;"></p>
+        </div>
+    </div>
 
-<div>
-  <button id="yes">Yes 😍</button>
-  <button id="no">No 😢</button>
-  <button id="maybe">Maybe 💌</button>
-</div>
+    <div id="proposal-stage">
+        <div class="glass-card">
+            <h1 class="my-4">Swostika,</h1>
+            <p class="mb-5">We've shared 6 years of friendship and love. Even with 6,000 miles between us, you are my world.<br><br><b>Will you be my Valentine?</b></p>
+            <div id="btn-wrap" style="position: relative; height: 120px; display: flex; justify-content: center; align-items: center; gap: 15px;">
+                <button class="btn-luxe" id="yesBtn" onclick="acceptProposal()">Yes! ❤️</button>
+                <button class="btn-solid-no" id="noBtn" onmouseover="flee()">No</button>
+            </div>
+        </div>
+    </div>
 
-<div id="message-container"></div>
+    <div id="main-vault">
+        
+        <div class="page" id="home-page" style="display: block;">
+            <div class="glass-card text-center">
+                <h1>Always Connected</h1>
+                <div class="row my-4 bg-black py-4 rounded-4 border border-secondary" style="--bs-border-opacity: .1;">
+                    <div class="col-6"><small class="text-secondary">LONDON</small><h3 id="uk-time"></h3></div>
+                    <div class="col-6"><small class="text-secondary">TOKYO</small><h3 id="jp-time" style="color:var(--accent)"></h3></div>
+                </div>
+                <p class="text-secondary">6 Years • 6,000 Miles • 1 Love</p>
+            </div>
+        </div>
 
-<script>
-// 50+ playful messages for No button
-const noMessages = [
-"Sanu, are you really sure? 🤔","Think about all our cute memories, Swostika 💕",
-"I promise endless hugs and kisses 😘","Can you imagine life without me, Sanu? 😭",
-"Every day without you is gray 🌈","I will love you forever, Sanu 💖",
-"Please say yes, Swostika 🙏💍","You can't leave me hanging, Sanu 😏",
-"My dreams are full of you 💕","You are my favorite hello and hardest goodbye 💖",
-"Sanu, you complete my world 🌍","Life is sweeter with you 🍬💖","I will cherish you forever 🛡️❤️",
-"You are my reason to smile Swostika 😄","Say yes and make me the happiest 🥰",
-"Sanu, my heart beats for you 💓","Please be mine forever 💖","I can't stop thinking about you 😘",
-"You are my sunshine Swostika ☀️","Life is magical with you ✨","I want to grow old with you Sanu 👵👴",
-"Our anniversary is coming Sept 25, 2025 💖","You are my treasure, Swostika 💎",
-"Being with you feels like home 🏡❤️","You make every day brighter Sanu 🌈","I love you endlessly 💕",
-"You are my everything Swostika 💖","Please say yes 😍","I can't imagine life without you Sanu 😢",
-"You are my heartbeat 💓","You are my soulmate Swostika 💕","Let's make memories together 🌸",
-"My love for you grows every day 💖","You are my dream come true Sanu 🌈","I promise to always protect you 🛡️",
-"You are my favorite person Swostika 😍","I can't wait to hold you forever 🤗","Please be my forever 💖"
-];
+        <div class="page" id="gallery-page" style="display: none;">
+            <div class="glass-card text-center">
+                <h1>Our Memories</h1>
+                <div class="gallery-grid">
+                    <div class="polaroid"><img src="photo1.png"><p>My Queen</p></div>
+                    <div class="polaroid"><img src="photo2.png"><p>Beautiful</p></div>
+                    <div class="polaroid"><img src="photo3.png"><p>Mero Baby</p></div>
+                    <div class="polaroid" style="background: #222;"><div style="height:150px; display:flex; align-items:center; justify-content:center; color:#444">2026</div><p style="color:#444">Tokyo Meeting</p></div>
+                </div>
+            </div>
+        </div>
 
-// Random messages for floating hearts/stars/notes
-const floatingMessages = [
-"Sagar loves Swostika 💖","You are my sunshine ☀️","Forever yours 💕",
-"Sanu, you are magical ✨","I can't stop smiling thinking of you 😘",
-"Our anniversary: Sept 25, 2025 💖","You complete me 💓","I will love you endlessly 💕"
-];
+        <div class="page" id="vweek-page" style="display: none;">
+            <div class="glass-card text-center">
+                <h1>Valentine Week</h1>
+                <div class="mt-4">
+                    <div class="row g-2">
+                        <div class="col-6" onclick="v('Rose Day', '🌹 6,000 miles is too far for real roses, so here is a digital garden for you.')"><div class="v-btn">Rose Day</div></div>
+                        <div class="col-6" onclick="v('Propose Day', '💍 6 years ago we started this journey. I propose we never let go.')"><div class="v-btn">Propose Day</div></div>
+                        <div class="col-6" onclick="v('Chocolate Day', '🍫 Sending you all the sweetness from London to Japan.')"><div class="v-btn">Chocolate</div></div>
+                        <div class="col-6" onclick="v('Teddy Day', '🧸 I wish I could be there to hug you tonight.')"><div class="v-btn">Teddy Day</div></div>
+                        <div class="col-12" onclick="v('Valentine Day', '❤️ Happy Valentine Day, Swostika. You are my forever.')"><div class="v-btn" style="background: var(--accent); border: none;">Valentine Day</div></div>
+                    </div>
+                    <div id="v-box" class="mt-4 p-3 rounded-4" style="border: 1px dashed var(--accent); min-height: 80px;">
+                        <p id="v-note" class="small m-0">Click a day above to see your message...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-const container = document.getElementById("message-container");
+        <div class="page" id="reasons-page" style="display: none;">
+            <div class="glass-card">
+                <h1 class="text-center mb-4">100 Reasons</h1>
+                <div id="reason-list-target" style="max-height: 400px; overflow-y: auto;"></div>
+            </div>
+        </div>
 
-// Functions to create floating hearts, stars, love notes
-function createFloating(type) {
-  const el = document.createElement("div");
-  el.className = "float";
-  el.textContent = type;
-  el.style.left = Math.random() * window.innerWidth + "px";
-  el.style.fontSize = (Math.random()*25+15) + "px";
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 6000);
-}
+        <nav class="bottom-nav">
+            <div class="nav-item active" onclick="show('home-page', this)">Home</div>
+            <div class="nav-item" onclick="show('gallery-page', this)">Gallery</div>
+            <div class="nav-item" onclick="show('vweek-page', this)">V-Week</div>
+            <div class="nav-item" onclick="show('reasons-page', this)">Reasons</div>
+        </nav>
 
-// Yes button
-document.getElementById("yes").addEventListener("click", () => {
-  window.location.href = "page2.html";
-});
+    </div>
 
-// No button
-document.getElementById("no").addEventListener("click", () => {
-  const idx = Math.floor(Math.random() * noMessages.length);
-  const msg = document.createElement("div");
-  msg.className = "message";
-  msg.textContent = noMessages[idx];
-  container.appendChild(msg);
-  container.scrollTop = container.scrollHeight;
-  msg.animate([{transform:'scale(1) rotate(0deg)'},{transform:'scale(1.2) rotate(-10deg)'},{transform:'scale(1) rotate(0deg)'}],{duration:500});
-});
+    <script>
+        // --- Verify Logic ---
+        function verifyAccess() {
+            const h = document.getElementById('her').value.toLowerCase().trim();
+            const s = document.getElementById('his').value.toLowerCase().trim();
+            if(h.includes("swosti") && s.includes("sag")) {
+                document.getElementById('login-gate').style.display = 'none';
+                document.getElementById('proposal-stage').style.display = 'flex';
+            } else {
+                document.getElementById('err').innerText = "Incorrect Names!";
+            }
+        }
 
-// Maybe button
-document.getElementById("maybe").addEventListener("click", () => {
-  const idx = Math.floor(Math.random() * floatingMessages.length);
-  createFloating(floatingMessages[idx]);
-});
+        // --- Proposal Logic ---
+        function acceptProposal() {
+            document.getElementById('proposal-stage').style.display = 'none';
+            document.getElementById('main-vault').style.display = 'block';
+            spawnHearts();
+        }
 
-// Random floating hearts/stars/notes
-setInterval(() => {
-  const types = ["💖","✨","🌸"];
-  createFloating(types[Math.floor(Math.random()*types.length)]);
-}, 800);
+        let scale = 1;
+        function flee() {
+            const no = document.getElementById('noBtn');
+            const yes = document.getElementById('yesBtn');
+            no.style.position = 'absolute';
+            no.style.left = Math.random() * 70 + '%';
+            no.style.top = Math.random() * 70 + '%';
+            scale += 0.5; 
+            yes.style.transform = `scale(${scale})`;
+        }
 
-// Cursor click hearts
-document.body.addEventListener("click", (e) => {
-  const heart = document.createElement("div");
-  heart.className = "float";
-  heart.textContent = "💖";
-  heart.style.left = e.clientX + "px";
-  heart.style.top = e.clientY + "px";
-  heart.style.fontSize = "25px";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 1500);
-});
+        // --- Nav Logic ---
+        function show(id, el) {
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            el.classList.add('active');
+            window.scrollTo(0,0);
+        }
 
-// Letter-by-letter floating message
-function typeMessage(msg) {
-  const div = document.createElement("div");
-  div.className = "message";
-  container.appendChild(div);
-  let i=0;
-  function type() {
-    if(i<msg.length){
-      div.textContent += msg.charAt(i);
-      i++;
-      setTimeout(type,50);
-    }
-  }
-  type();
-}
+        // --- Valentine Content ---
+        function v(title, text) {
+            document.getElementById('v-note').innerHTML = `<b style="color:var(--accent)">${title}</b><br>${text}`;
+        }
 
-setInterval(() => {
-  const idx = Math.floor(Math.random()*floatingMessages.length);
-  typeMessage(floatingMessages[idx]);
-}, 10000);
+        // --- Time Clocks ---
+        function setTime() {
+            const o = { hour:'2-digit', minute:'2-digit' };
+            document.getElementById('uk-time').innerText = new Date().toLocaleTimeString('en-GB', {timeZone:'Europe/London', ...o});
+            document.getElementById('jp-time').innerText = new Date().toLocaleTimeString('en-GB', {timeZone:'Asia/Tokyo', ...o});
+        }
+        setInterval(setTime, 1000); setTime();
 
-</script>
+        // --- Heart Shower ---
+        function spawnHearts() {
+            setInterval(() => {
+                const h = document.createElement('div');
+                h.innerHTML = '❤️'; h.className = 'heart-float';
+                h.style.left = Math.random() * 100 + 'vw';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 4000);
+            }, 600);
+        }
+
+        // --- Unique 100 Reasons Builder ---
+        const uniqueReasons = [
+            "Your 6-year loyalty to us.", "The way you smile during our video calls.", "Your incredible bravery in moving to Japan.",
+            "The way you say my name with that specific tone.", "How you make me feel safe even from 6,000 miles away.",
+            "Your beautiful, kind heart.", "The way your eyes sparkle when you're excited.", "Your unwavering trust in me.",
+            "How you are my best friend before anything else.", "Your intelligence and the way you think.",
+            "The way you handle the 9-hour time difference for us.", "How you support my every ambition.",
+            "Your sense of humor that matches mine perfectly.", "The way you look in your favorite photos.",
+            "How you remember the small details about me.", "Your resilience through tough times.",
+            "The way you make the distance feel like just a number.", "Your patience when I'm being difficult.",
+            "The way you represent home to me.", "How you are the first person I want to tell good news to.",
+            "Your unique style and grace.", "The way you care for your family.", "Your beautiful morning voice.",
+            "How you look at the moon and think of me.", "The way you motivate me to be a better man.",
+            "Your honesty, even when it's hard.", "The way you laugh at my terrible jokes.",
+            "Your dedication to your work and studies.", "How you make me proud every single day.",
+            "The way you wait for me to wake up in the UK.", "Your softness and your strength combined.",
+            "How you never gave up on us in 6 years.", "The way you describe the food in Japan.",
+            "Your taste in music that we share.", "How you are the calm in my storm.",
+            "The way you plan our future meetings.", "Your scent that I can almost imagine.",
+            "How you handle being homesick with such grace.", "The way you trust the process of our love.",
+            "Your beautiful handwriting and cards.", "How you are the prettier half of this relationship.",
+            "The way you make me smile just by a notification.", "Your dreams and how big they are.",
+            "The way you respect my space and my time.", "How you are my favorite 2 AM conversation.",
+            "Your empathy for others.", "The way you look in that one specific dress.",
+            "How you are worth every single second of the wait.", "The way you make my life feel complete.",
+            "Your kindness to strangers and animals.", "How you are my favorite adventure.",
+            "The way you challenge me intellectually.", "Your faith in 'us' when things get hard.",
+            "How you are the missing piece to my puzzle.", "The way you celebrate my small wins.",
+            "Your beautiful, soft hands.", "How you make Tokyo feel like a place I belong.",
+            "The way you listen to my long rants.", "Your curiosity about the world.",
+            "How you are my sanctuary.", "The way you keep our memories alive.",
+            "Your independence and self-reliance.", "How you are the main character in my story.",
+            "The way you light up any room you enter.", "Your maturity in handling distance.",
+            "How you make me feel like a king.", "The way you handle my UK weather complaints.",
+            "Your beautiful personality that shines through the screen.", "How you are my greatest motivation.",
+            "The way you never judge my flaws.", "Your beautiful soul.", "How you make me believe in soulmates.",
+            "The way you handle difficult days with poise.", "Your perspective on life.", "How you are my peace.",
+            "The way you share your day with me through photos.", "Your voice which is my favorite song.",
+            "How you are the first thing on my mind every morning.", "The way you look when you're sleepy.",
+            "Your loyalty which is rare to find.", "How you make me feel like the luckiest man.",
+            "The way you represent my future.", "Your kindness that has no limits.", "How you are my best decision.",
+            "The way you trust me with your secrets.", "Your beautiful smile that fixes my bad days.",
+            "How you are my partner in everything.", "The way you prioritize us.", "Your elegance.",
+            "How you make 6,000 miles look easy.", "The way you handle my silence and my noise.",
+            "Your beautiful existence.", "How you are simply Swostika.", "Because you chose me back.",
+            "Because 6 years was just the beginning.", "Because I love you more than words can render.",
+            "Because you are my forever.", "Because you are mine.", "Because I am yours.", "Because you are my Valentine."
+        ];
+
+        const target = document.getElementById('reason-list-target');
+        uniqueReasons.forEach((reason, i) => {
+            const div = document.createElement('div');
+            div.className = 'reason-item';
+            div.innerHTML = `<b>#${i+1}</b> ${reason}`;
+            target.appendChild(div);
+        });
+    </script>
 </body>
 </html>
